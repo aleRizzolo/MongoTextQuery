@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import logger from "./utils/logger"
 
 //suppress deprecation warning for strictQuery
 mongoose.set("strictQuery", true)
@@ -9,7 +10,7 @@ const RECONNECT_TIMEOUT = 5000
 // Handle connection error then disconnect all connections
 mongoose.connection.on("error", (error) => {
   // Log the error
-  console.error("Error in MongoDb connection:", error)
+  logger.error("Error in MongoDb connection:", error)
   // Disconnect all connections
   mongoose.disconnect()
 })
@@ -22,18 +23,20 @@ mongoose.connection.on("disconnected", function () {
   // Get the current date and time in UTC
   const disconnectionDate: string = new Date().toISOString()
 
-  console.info(`MongoDB disconnected! Trying to reconnect after ${timeout} sec...`, disconnectionDate)
+  logger.info(`MongoDB disconnected! Trying to reconnect after ${timeout} sec...`, disconnectionDate)
 
   // After RECONNECT_TIMEOUT milliseconds try to reconnect to db
   setTimeout(connectToDatabase, RECONNECT_TIMEOUT)
 })
 
 export const connectToDatabase = async () => {
-  console.info("Connecting to database...")
+  logger.info("Connecting to database...")
 
   const connection = await mongoose.connect(process.env.MONGODB_URL!)
 
-  console.info("🍃 Database connection established!")
+  logger.info("🍃 Database connection established!")
 
   return connection
 }
+
+export const db = mongoose.connection

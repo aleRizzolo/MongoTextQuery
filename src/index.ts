@@ -1,7 +1,8 @@
 import * as dotenv from "dotenv"
-import express, { Express } from "express"
-
+import logger from "./utils/logger"
 import { connectToDatabase } from "./db"
+import express, { Express } from "express"
+import articleRouter from "./routes/routes"
 
 dotenv.config()
 
@@ -10,10 +11,10 @@ const app: Express = express()
 
 app.use(express.json())
 
-//app.use("/api", fetchDbRouter)
+app.use("/api", articleRouter)
 
 connectToDatabase()
 
 app.listen(port, () => {
-  console.info(`⚡️ Server is listening at ${port}`)
+  logger.info(`⚡️ Server is listening at ${port} in ${process.env.NODE_ENV} mode`)
 })
