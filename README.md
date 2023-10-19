@@ -6,6 +6,15 @@
 
 This project is a Full Text Search Engine powered by MongoDB and developed using TypeScript with Express. It provides a foundation for creating applications or services that require full text search capabilities and supports fuzzy search for more flexible text matching.
 
+## Table of Contents:
+- [MongoTextQuery](#mongotextquery)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [Deploy to your vercel instance](#deploy-to-your-vercel-instance)
+- [Next Steps](#next-steps)
+
 ## Prerequisites
 
 Before you can run this project, make sure you have the following prerequisites installed on your system:
@@ -53,7 +62,7 @@ Before you can run this project, make sure you have the following prerequisites 
    npm run start
    ```
 
-The Full Text Search Engine should now be up and running on `http://localhost:3000` (or 8080 if PORT variable is not specified).
+The Full Text Search Engine should now be up and running on `http://localhost:3000` (or 8080 if PORT variable is not defined).
 
 ## Project Structure
 
