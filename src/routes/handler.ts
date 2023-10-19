@@ -7,18 +7,26 @@ import { AddArticles, RetrieveArticles } from "../types"
 export const saveArticle = async (req: Request, res: Response) => {
   const article: AddArticles = req.body
 
+  if ((article.link || article.name) === null) {
+    return res.status(400).send({ success: false, message: "Please provide the article's name and link" })
+  }
+
   try {
     const articleToSave = await ArticlesModel.create(article)
 
     return res.status(200).send({ success: true, data: articleToSave })
   } catch (err: any) {
     logger.error(err.stack)
-    return res.status(500).send({ success: false, statusCode: 500, message: `Error: ${err}` })
+    return res.status(500).send({ success: false, message: `Error: ${err}` })
   }
 }
 
 export const retrieveArticle = async (req: Request, res: Response) => {
   const article: RetrieveArticles = req.body
+
+  if (article.name === null) {
+    return res.status(400).send({ success: false, message: "Please provide the article's name" })
+  }
 
   try {
     const aggregationPipeline = [
@@ -43,6 +51,6 @@ export const retrieveArticle = async (req: Request, res: Response) => {
     return res.status(200).send({ success: true, data: result })
   } catch (err: any) {
     logger.error(err.stack)
-    return res.status(500).send({ success: false, statusCode: 500, message: `Error: ${err}` })
+    return res.status(500).send({ success: false, message: `Error: ${err}` })
   }
 }
