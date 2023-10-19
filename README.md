@@ -2,18 +2,22 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)<br>
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)<br>
 
-This project is a Full Text Search Engine powered by MongoDB and developed using TypeScript with Express. It provides a foundation for creating applications or services that require full text search capabilities and supports fuzzy search for more flexible text matching.
+This project is a Full Text Search Engine powered by MongoDB and developed using TypeScript with Express that saves the headline and the url of an online article. It provides a foundation for creating applications or services that require full text search capabilities and supports fuzzy search for more flexible text matching.
 
 ## Table of Contents:
-- [MongoTextQuery](#mongotextquery)
+- [Why this Project?](#why-this-project)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [Deploy to your vercel instance](#deploy-to-your-vercel-instance)
 - [Next Steps](#next-steps)
+
+## Why this Project?
+
+I had a problem <br>Months ago, wanting to stay up-to-date with k8s world, I signed up for a [newsletter](https://learnk8s.io/learn-kubernetes-weekly) wich sends me an email with a lot of useful "How to" guides and some insightful articles. Unfortunately, most articles remain unread, and when I will need them in the future, I will have forgotten that I already have the solution.<br>This is why this project is born: this is a way to save title and URL of an article, and when I need them, I will first search in my personal database
 
 ## Prerequisites
 
@@ -80,10 +84,6 @@ The project has the following structure:
 ## Contributing
 
 If you would like to contribute to this project, please open an issue or create a pull request on the GitHub repository.
-
-## Deploy to your vercel instance
-
-If you wish to deploy this project on your vercel instance, You can follow this [guide](https://dev.to/tirthpatel/deploy-node-ts-express-typescript-on-vercel-284h)
 
 ## Next Steps
 
