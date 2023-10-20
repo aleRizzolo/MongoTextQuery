@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 import logger from "./utils/logger"
 
+let connection
+
 //suppress deprecation warning for strictQuery
 mongoose.set("strictQuery", true)
 
@@ -32,9 +34,14 @@ mongoose.connection.on("disconnected", function () {
 export const connectToDatabase = async () => {
   logger.info("Connecting to database...")
 
-  const connection = await mongoose.connect(process.env.MONGODB_URL!)
+  if (process.env.NODE_ENV == "production") {
+    connection = await mongoose.connect(process.env.MONGODB_URL!)
+  } else {
+    connection = await mongoose.connect(process.env.MONGO_TEST!)
+  }
 
-  logger.info("🍃 Database connection established!")
+  logger.info("🍃 Database connection established! ")
+  console.log(connection)
 
   return connection
 }

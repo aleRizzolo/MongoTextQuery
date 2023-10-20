@@ -18,3 +18,5 @@ connectToDatabase()
 app.listen(port, () => {
   logger.info(`⚡️ Server is listening at ${port} in ${process.env.NODE_ENV} mode`)
 })
+
+export default app
