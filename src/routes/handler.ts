@@ -7,10 +7,6 @@ import { AddArticles, RetrieveArticles } from "../types"
 export const saveArticle = async (req: Request, res: Response) => {
   const article: AddArticles = req.body
 
-  if ((article.link || article.name) === null) {
-    return res.status(400).send({ success: false, message: "Please provide the article's name and link" })
-  }
-
   try {
     const articleToSave = await ArticlesModel.create(article)
 

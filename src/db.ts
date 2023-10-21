@@ -41,7 +41,6 @@ export const connectToDatabase = async () => {
   }
 
   logger.info("🍃 Database connection established! ")
-  console.log(connection)
 
   return connection
 }
