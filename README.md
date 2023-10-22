@@ -1,4 +1,5 @@
 # MongoTextQuery
+
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
@@ -7,6 +8,7 @@
 This project is a Full Text Search Engine powered by MongoDB and developed using TypeScript with Express that saves the headline and the url of an online article. It provides a foundation for creating applications or services that require full text search capabilities and supports fuzzy search for more flexible text matching.
 
 ## Table of Contents:
+
 - [Why this Project?](#why-this-project)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
@@ -36,7 +38,7 @@ Before you can run this project, make sure you have the following prerequisites 
 2. Change into the project directory:
 
    ```bash
-   cd MongoTextQuery
+   cd MongoTextQuery/server
    ```
 
 3. Create a `.env` file by copying the contents from `.env.sample`. You can do this manually or use the following command:
@@ -73,9 +75,9 @@ The project has the following structure:
 
 - `dist/`: Compiled JavaScript files (needed for vercel deploy).
 - `src/`: Contains the TypeScript source code.
-    - `routes/`: Define your API routes here.
-    - `models/`: Define your MongoDB data models.
-    - `types/`: Define the types for the models and for the routes.
+  - `routes/`: Define your API routes here.
+  - `models/`: Define your MongoDB data models.
+  - `types/`: Define the types for the models and for the routes.
 - `utils/`: Contains logger configuration.
 - `db.ts`: Connection to the Database
 - `index.ts`: The main entry point of the application.
