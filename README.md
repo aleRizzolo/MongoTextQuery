@@ -11,7 +11,8 @@ This project is a Full Text Search Engine powered by MongoDB and developed using
 
 - [Why this Project?](#why-this-project)
 - [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
+- [Manual Run](#manual-run)
+- [Run from Script](#run-from-script-requires-docker)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [Next Steps](#next-steps)
@@ -27,7 +28,7 @@ Before you can run this project, make sure you have the following prerequisites 
 - Node.js: You can download and install Node.js from [nodejs.org](https://nodejs.org/).
 - MongoDB: Ensure you have MongoDB installed locally or access to a MongoDB server.
 
-## Getting Started
+## Manual Run
 
 1. Clone the repository to your local machine:
 
@@ -63,11 +64,26 @@ Before you can run this project, make sure you have the following prerequisites 
 
 6. Start the application:
 
-   ```bash
-   npm run start
-   ```
+_ToDo: start the front-end_
 
 The Full Text Search Engine should now be up and running on `http://localhost:3000` (or 8080 if PORT variable is not defined).
+
+## Run from script (requires Docker)
+
+1. Run server Docker build<br>
+
+   ```bash
+   cd server
+   ```
+
+   and
+
+   ```bash
+   ./build_docker.[bat][sh]
+   ```
+
+2. Run front-end Docker build<br>
+   _ToDo_
 
 ## Project Structure
 
