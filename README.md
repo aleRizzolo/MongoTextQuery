@@ -73,19 +73,21 @@ The Full Text Search Engine should now be up and running on `http://localhost:30
 
 The project has the following structure:
 
-- `dist/`: Compiled JavaScript files (needed for vercel deploy).
-- `src/`: Contains the TypeScript source code.
-  - `routes/`: Define your API routes here.
-  - `models/`: Define your MongoDB data models.
-  - `types/`: Define the types for the models and for the routes.
-- `utils/`: Contains logger configuration.
-- `db.ts`: Connection to the Database
-- `index.ts`: The main entry point of the application.
+- `server/`: Contains all the server directories
+  - `src/`: Contains the TypeScript source code.
+    - `routes/`: Define your API routes here.
+    - `models/`: Define your MongoDB data models.
+    - `types/`: Define the types for the models and for the routes.
+  - `utils/`: Contains logger configuration.
+  - `db.ts`: Connection to the Database
+  - `index.ts`: The main entry point of the application.
 
 ## Contributing
 
 If you would like to contribute to this project, please open an issue or create a pull request on the GitHub repository.
 
 ## Next Steps
+
+- [ ] Add search based on tags
 
 - [ ] Add a front-end
