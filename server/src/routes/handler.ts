@@ -2,6 +2,7 @@ import { db } from "../db"
 import logger from "../utils/logger"
 import { Request, Response } from "express"
 import ArticlesModel from "../models/Articles"
+import { createAggregationPipeline } from "../utils/aggregation"
 import { AddArticles, DeleteArticle, RetrieveArticles } from "../types"
 
 export const saveArticle = async (req: Request, res: Response) => {
@@ -25,16 +26,7 @@ export const retrieveArticle = async (req: Request, res: Response) => {
   }
 
   try {
-    const aggregationPipeline = [
-      {
-        $search: {
-          text: {
-            query: JSON.stringify(article),
-            path: "name",
-          },
-        },
-      },
-    ]
+    const aggregationPipeline = createAggregationPipeline(article.name.toString(), "name")
 
     const cursor = db.collection("articles").aggregate(aggregationPipeline)
 
@@ -59,16 +51,7 @@ export const deleteArticle = async (req: Request, res: Response) => {
   }
 
   try {
-    const aggregationPipeline = [
-      {
-        $search: {
-          text: {
-            query: JSON.stringify(article),
-            path: "link",
-          },
-        },
-      },
-    ]
+    const aggregationPipeline = createAggregationPipeline(article.link.toString(), "link")
 
     const cursor = db.collection("articles").aggregate(aggregationPipeline)
 
