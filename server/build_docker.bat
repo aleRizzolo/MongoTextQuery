@@ -5,4 +5,4 @@ npm install
 npm run build
 
 docker build -t mongotextsearch-be .
-docker run -d --name mongotext-search-be --p 3000:3000 mongotextsearch
+docker run -d -p 3000:3000 --name mongotextsearch-be mongotextsearch-be
