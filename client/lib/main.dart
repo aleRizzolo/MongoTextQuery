@@ -29,6 +29,9 @@ class MyApp extends StatelessWidget {
                   onPressed: () {},
                   child: const Text('Insert'),
                 ),
+                const SizedBox(
+                  width: 10,
+                ),
                 FilledButton(
                   style: FilledButton.styleFrom(
                     shape: const ContinuousRectangleBorder(
@@ -39,6 +42,9 @@ class MyApp extends StatelessWidget {
                   ),
                   onPressed: () {},
                   child: const Text('Retrieve'),
+                ),
+                const SizedBox(
+                  width: 10,
                 ),
                 FilledButton(
                   style: FilledButton.styleFrom(
