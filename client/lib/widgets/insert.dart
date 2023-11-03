@@ -5,14 +5,13 @@ class Insert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(5),
-      child: Directionality(
-        textDirection: TextDirection.ltr, // Set the text direction here
-        child: Scaffold(
-          body: SizedBox(
-            width: double.infinity,
+    return Scaffold(
+      body: Directionality(
+        textDirection: TextDirection.ltr,
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
             child: Row(
               children: [
                 FilledButton(
