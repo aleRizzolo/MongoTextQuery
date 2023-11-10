@@ -46,22 +46,18 @@ export const retrieveArticle = async (req: Request, res: Response) => {
 export const deleteArticle = async (req: Request, res: Response) => {
   const article: DeleteArticle = req.body
 
-  if (article.link === null) {
+  if (article.url === null) {
     return res.status(400).send({ success: false, message: "Please provide the article's name" })
   }
 
   try {
-    const aggregationPipeline = createAggregationPipeline(article.link.toString(), "link")
+    const result = await ArticlesModel.findOne({ url: article.url })
 
-    const cursor = db.collection("articles").aggregate(aggregationPipeline)
-
-    const result = await cursor.toArray()
-
-    if (result.length === 0) {
+    if (result === null) {
       return res.status(404).send({ success: false, message: "Article not found" })
     }
 
-    const deletedArticle = await ArticlesModel.deleteOne({ link: article.link })
+    const deletedArticle = await ArticlesModel.deleteOne({ url: article.url })
 
     return res.status(200).send({ success: true, data: "Article deleted" })
   } catch (err: any) {

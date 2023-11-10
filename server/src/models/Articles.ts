@@ -7,7 +7,7 @@ const ArticlesModel = new mongoose.Schema<AddArticles>({
     type: String,
     required: true,
   },
-  link: {
+  url: {
     type: String,
     required: true,
     unique: true,
