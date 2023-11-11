@@ -131,8 +131,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-### Flutter
-
 # See https://www.dartlang.org/guides/libraries/private-files
 
 # Files and directories created by pub
@@ -153,6 +151,3 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
-
-.flutter-plugins
-.flutter-plugins-dependencies

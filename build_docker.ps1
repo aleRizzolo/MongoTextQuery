@@ -17,7 +17,7 @@ Set-Location $ROOT_DIR
 $answer = Read-Host "Do you want to start the backend container? (y/n)"
 
 if ($answer -eq "y") {
-    docker run --rm -d -p 3000:3000 --name mongotextsearch-be mongotextsearch-be
+    docker run --rm -d -p 3000:3000 --name mongotextsearch-server mongotextsearch-server
 } else {
     return 0
 }

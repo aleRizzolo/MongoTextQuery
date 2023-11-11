@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Interaction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+
+      form {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button onclick="showForm('add')">Add</button>
+      <button onclick="showForm('delete')">Delete</button>
+      <button onclick="showForm('get')">Get</button>
+    </nav>
+
+    <div id="addForm" style="display: none">
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+        <br />
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" />
+        <br />
+        <button onclick="postData()">Add</button>
+      </form>
+    </div>
+
+    <div id="deleteForm" style="display: none">
+      <form>
+        <label for="deleteUrl">URL to Delete:</label>
+        <input type="text" id="deleteUrl" name="deleteUrl" />
+        <br />
+        <button onclick="deleteData()">Delete</button>
+      </form>
+    </div>
+
+    <div id="getForm" style="display: none">
+      <form>
+        <label for="getName">Name to Get:</label>
+        <input type="text" id="getName" name="getName" />
+        <br />
+        <button onclick="getData()">Get</button>
+      </form>
+    </div>
+
+    <script>
+      function showForm(formType) {
+        document.getElementById("addForm").style.display =
+          formType === "add" ? "block" : "none";
+        document.getElementById("deleteForm").style.display =
+          formType === "delete" ? "block" : "none";
+        document.getElementById("getForm").style.display =
+          formType === "get" ? "block" : "none";
+      }
+
+      function postData() {
+        const name = document.getElementById("name").value;
+        const url = document.getElementById("url").value;
+
+        // Replace with your actual API endpoint for adding data
+        const apiUrl = "http://localhost:3000/api/add";
+
+        // Perform POST request using fetch or any other method
+        fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, url }),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function deleteData() {
+        const deleteUrl = document.getElementById("deleteUrl").value;
+
+        // Replace with your actual API endpoint for deleting data
+        const apiUrl = "http://localhost:3000/api/delete";
+
+        // Perform DELETE request using fetch or any other method
+        fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: deleteUrl }),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function getData() {
+        const getName = document.getElementById("getName").value;
+
+        // Replace with your actual API endpoint for getting data
+        const apiUrl = `http://localhost:3000/api/get?name=${encodeURIComponent(
+          getName
+        )}`;
+
+        debugger;
+
+        // Perform GET request using fetch or any other method
+        fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            displayResults(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            window.lastError = error; // Log the error to a global variable
+          });
+      }
+    </script>
+  </body>
+</html>

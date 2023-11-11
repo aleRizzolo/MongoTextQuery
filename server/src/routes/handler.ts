@@ -7,7 +7,7 @@ import { AddArticles, DeleteArticle, RetrieveArticles } from "../types"
 
 export const saveArticle = async (req: Request, res: Response) => {
   const article: AddArticles = req.body
-
+  console.log("save called")
   try {
     const articleToSave = await ArticlesModel.create(article)
 
@@ -19,14 +19,15 @@ export const saveArticle = async (req: Request, res: Response) => {
 }
 
 export const retrieveArticle = async (req: Request, res: Response) => {
-  const article: RetrieveArticles = req.body
+  const articleName: string = req.query.name as string
+  console.log("@@@retrievecalled")
 
-  if (article.name === null) {
+  if (articleName === null) {
     return res.status(400).send({ success: false, message: "Please provide the article's name" })
   }
 
   try {
-    const aggregationPipeline = createAggregationPipeline(article.name.toString(), "name")
+    const aggregationPipeline = createAggregationPipeline(articleName, "name")
 
     const cursor = db.collection("articles").aggregate(aggregationPipeline)
 
@@ -45,7 +46,7 @@ export const retrieveArticle = async (req: Request, res: Response) => {
 
 export const deleteArticle = async (req: Request, res: Response) => {
   const article: DeleteArticle = req.body
-
+  console.log("-----deletecalled")
   if (article.url === null) {
     return res.status(400).send({ success: false, message: "Please provide the article's name" })
   }

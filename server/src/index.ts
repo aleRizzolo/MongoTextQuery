@@ -7,11 +7,11 @@ import articleRouter from "./routes/routes"
 
 dotenv.config()
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3000
 const app: Express = express()
 
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
 app.use("/api", articleRouter)
 
@@ -20,5 +20,3 @@ connectToDatabase()
 app.listen(port, () => {
   logger.info(`⚡️ Server is listening at ${port} in ${process.env.NODE_ENV} mode`)
 })
-
-export default app
