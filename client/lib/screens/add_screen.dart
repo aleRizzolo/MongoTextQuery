@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:client/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:client/widgets/nav_bar.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -58,7 +60,7 @@ class _AddScreenState extends State<AddScreen> {
                         submit(title, url);
                       } else {
                         // Handle empty title or URL
-                        print('Title or URL cannot be empty.');
+                        logger.i('Title or URL cannot be empty.');
                       }
                     },
                     child: const Text('Submit'),
@@ -73,7 +75,7 @@ class _AddScreenState extends State<AddScreen> {
   }
 
   Future<void> submit(String title, String urlString) async {
-    var apiUrl = Uri.http('localhost:3000', '/api/add');
+    var apiUrl = Uri.http(dotenv.env['BE_URL']!, '/api/add');
     // Convert data to a JSON format
     var jsonData = jsonEncode({
       'name': title,
@@ -85,6 +87,6 @@ class _AddScreenState extends State<AddScreen> {
       headers: {'Content-Type': 'application/json'},
       body: jsonData,
     );
-    print('Response status: ${response.statusCode}');
+    logger.i('Response status: ${response.statusCode}');
   }
 }
