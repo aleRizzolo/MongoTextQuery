@@ -1,7 +1,7 @@
-import 'package:client/screens/delete_screen.dart';
-import 'package:client/screens/get_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:client/screens/get_screen.dart';
 import 'package:client/screens/add_screen.dart';
+import 'package:client/screens/delete_screen.dart';
 
 void main() {
   runApp(const MyApp());
