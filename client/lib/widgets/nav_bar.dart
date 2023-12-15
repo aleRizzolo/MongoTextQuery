@@ -1,6 +1,3 @@
-import 'package:client/screens/add_screen.dart';
-import 'package:client/screens/delete_screen.dart';
-import 'package:client/screens/get_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
@@ -22,9 +19,9 @@ class NavBar extends StatelessWidget {
                     BorderRadius.circular(5.0), // Adjust the radius as needed
               ),
             ),
-            onPressed: () => Navigator.push(
+            onPressed: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => const AddScreen()),
+              '/',
             ),
             child: const Text(
               "Add",
@@ -43,9 +40,9 @@ class NavBar extends StatelessWidget {
                     BorderRadius.circular(5.0), // Adjust the radius as needed
               ),
             ),
-            onPressed: () => Navigator.push(
+            onPressed: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => const DeleteScreen()),
+              '/delete',
             ),
             child: const Text(
               "Delete",
@@ -64,9 +61,9 @@ class NavBar extends StatelessWidget {
                     BorderRadius.circular(5.0), // Adjust the radius as needed
               ),
             ),
-            onPressed: () => Navigator.push(
+            onPressed: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => const GetScreen()),
+              '/get',
             ),
             child: const Text(
               "Get",

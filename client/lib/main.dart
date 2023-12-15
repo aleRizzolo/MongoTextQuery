@@ -1,8 +1,10 @@
+import 'package:client/screens/delete_screen.dart';
+import 'package:client/screens/get_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:client/screens/add_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,8 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: AddScreen(),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const AddScreen(),
+        '/delete': (context) => const DeleteScreen(),
+        '/get': (context) => const GetScreen()
+      },
     );
   }
 }
