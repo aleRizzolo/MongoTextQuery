@@ -5,10 +5,7 @@ import 'package:client/screens/add_screen.dart';
 import 'package:client/screens/delete_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-var logger = Logger(
-  printer: PrettyPrinter(), // Use the PrettyPrinter to format and print log
-  output: null, //send everything to console
-);
+var logger = Logger();
 
 Future main() async {
   await dotenv.load(fileName: ".env");

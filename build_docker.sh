@@ -12,17 +12,16 @@ npm run build
 docker build -t mongotextsearch-server .
 clear
 
-cd $ROOT_DIR/client
-docker build -t mongotextsearch-client .
-clear
+# cd $ROOT_DIR/client
+# docker build -t mongotextsearch-client .
+# clear
 
 cd $ROOT_DIR
 
-read -p "Do you want to start the backend container? y/n: " answer
+read -p "Do you want to start the application? Yy/Nn: " answer
 
-if [ $answer = "y" ]
-then
-    docker run --rm -d --network mongotextsearch -p 3000:3000 --name mongotextsearch-server mongotextsearch-server
-else
-    return 0
-fi
+case $answer in 
+    Y | y ) echo docker run --rm -d --network mongotextsearch -p 3000:3000 --name mongotextsearch-server mongotextsearch-server;;
+    N | n  ) exit 0;;
+    *     ) echo "Invalid choice";;
+esac
