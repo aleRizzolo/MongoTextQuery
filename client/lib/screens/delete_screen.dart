@@ -14,10 +14,10 @@ class DeleteScreen extends StatefulWidget {
 
 class _DeleteScreenState extends State<DeleteScreen> {
   final urlController = TextEditingController();
+  int? statusCode;
 
   @override
   void dispose() {
-    // Clean up the controllers when the widget is disposed.
     urlController.dispose();
     super.dispose();
   }
@@ -49,11 +49,17 @@ class _DeleteScreenState extends State<DeleteScreen> {
                       if (url.isNotEmpty) {
                         submit(url);
                       } else {
-                        // Handle empty URL
                         logger.i('URL cannot be empty.');
                       }
                     },
                     child: const Text('Submit'),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Status Code: ${statusCode ?? ""}',
+                    style: TextStyle(
+                      color: statusCode == 200 ? Colors.green : Colors.red,
+                    ),
                   ),
                 ],
               ),
@@ -66,7 +72,6 @@ class _DeleteScreenState extends State<DeleteScreen> {
 
   Future<void> submit(String urlString) async {
     var apiUrl = Uri.http(dotenv.env['BE_URL']!, '/api/delete');
-    // Convert data to a JSON format
     var jsonData = jsonEncode({
       'url': urlString,
     });
@@ -76,6 +81,15 @@ class _DeleteScreenState extends State<DeleteScreen> {
       headers: {'Content-Type': 'application/json'},
       body: jsonData,
     );
+
+    setState(() {
+      statusCode = response.statusCode;
+    });
+
+    if (response.statusCode == 200) {
+      urlController.clear();
+    }
+
     logger.i('Response status: ${response.statusCode}');
   }
 }

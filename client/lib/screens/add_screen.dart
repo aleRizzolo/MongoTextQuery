@@ -15,10 +15,10 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> {
   final titleController = TextEditingController();
   final urlController = TextEditingController();
+  int? statusCode;
 
   @override
   void dispose() {
-    // Clean up the controllers when the widget is disposed.
     titleController.dispose();
     urlController.dispose();
     super.dispose();
@@ -59,11 +59,17 @@ class _AddScreenState extends State<AddScreen> {
                       if (title.isNotEmpty && url.isNotEmpty) {
                         submit(title, url);
                       } else {
-                        // Handle empty title or URL
                         logger.i('Title or URL cannot be empty.');
                       }
                     },
                     child: const Text('Submit'),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Status Code: ${statusCode ?? ""}',
+                    style: TextStyle(
+                      color: statusCode == 200 ? Colors.green : Colors.red,
+                    ),
                   ),
                 ],
               ),
@@ -76,7 +82,6 @@ class _AddScreenState extends State<AddScreen> {
 
   Future<void> submit(String title, String urlString) async {
     var apiUrl = Uri.http(dotenv.env['BE_URL']!, '/api/add');
-    // Convert data to a JSON format
     var jsonData = jsonEncode({
       'name': title,
       'url': urlString,
@@ -87,6 +92,16 @@ class _AddScreenState extends State<AddScreen> {
       headers: {'Content-Type': 'application/json'},
       body: jsonData,
     );
+
+    setState(() {
+      statusCode = response.statusCode;
+    });
+
+    if (response.statusCode == 200) {
+      titleController.clear();
+      urlController.clear();
+    }
+
     logger.i('Response status: ${response.statusCode}');
   }
 }

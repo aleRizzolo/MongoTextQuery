@@ -3,6 +3,7 @@ import 'package:client/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:client/widgets/nav_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GetScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class GetScreen extends StatefulWidget {
 
 class _GetScreenState extends State<GetScreen> {
   final titleController = TextEditingController();
+  Uri url = Uri.https("");
   List<Map<String, dynamic>> data = [];
 
   @override
@@ -63,7 +65,8 @@ class _GetScreenState extends State<GetScreen> {
                           title: Text(data[index]['name']),
                           subtitle: GestureDetector(
                             onTap: () {
-                              //add logic for open url
+                              url = Uri.parse(data[index]['link']);
+                              _launchUrl(url);
                             },
                             child: Text(
                               data[index]['link'],
@@ -97,6 +100,7 @@ class _GetScreenState extends State<GetScreen> {
 
     if (response.statusCode == 200) {
       dynamic jsonResponse = json.decode(response.body);
+      titleController.clear();
 
       if (jsonResponse['success'] == true) {
         dynamic jsonData = jsonResponse['data'];
@@ -121,5 +125,9 @@ class _GetScreenState extends State<GetScreen> {
     } else {
       logger.i('Error: ${response.statusCode}');
     }
+  }
+
+  Future<void> _launchUrl(Uri url) async {
+    await launchUrl(url);
   }
 }
