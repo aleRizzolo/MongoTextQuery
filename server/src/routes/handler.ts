@@ -7,6 +7,11 @@ import { AddArticles, DeleteArticle, RetrieveArticles } from "../types"
 
 export const saveArticle = async (req: Request, res: Response) => {
   const article: AddArticles = req.body
+
+  if (!article.name || !article.url) {
+    return res.status(400).send({ success: false, message: "Article's name or url missing" })
+  }
+
   try {
     const articleToSave = await ArticlesModel.create(article)
 
@@ -20,7 +25,7 @@ export const saveArticle = async (req: Request, res: Response) => {
 export const retrieveArticle = async (req: Request, res: Response) => {
   const articleName: string = req.query.name as string
 
-  if (articleName === null) {
+  if (!articleName) {
     return res.status(400).send({ success: false, message: "Please provide the article's name" })
   }
 
@@ -45,7 +50,7 @@ export const retrieveArticle = async (req: Request, res: Response) => {
 export const deleteArticle = async (req: Request, res: Response) => {
   const article: DeleteArticle = req.body
 
-  if (article.url === null) {
+  if (!article.url) {
     return res.status(400).send({ success: false, message: "Please provide the article's name" })
   }
 
