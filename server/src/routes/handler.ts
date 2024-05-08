@@ -13,6 +13,12 @@ export const saveArticle = async (req: Request, res: Response) => {
   }
 
   try {
+    const alreadyExist = await ArticlesModel.findOne({ link: article.url })
+
+    if (alreadyExist) {
+      return res.status(400).send({ success: false, message: "Article already exists" })
+    }
+
     const articleToSave = await ArticlesModel.create(article)
 
     return res.status(200).send({ success: true, data: articleToSave })
