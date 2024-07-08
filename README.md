@@ -12,10 +12,8 @@ This project is a Full Text Search Engine powered by MongoDB and developed using
 - [Why this Project?](#why-this-project)
 - [Prerequisites](#prerequisites)
 - [Manual Run](#manual-run)
-- [Run from Script](#run-from-script-requires-docker)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [Next Steps](#next-steps)
 
 ## Why this Project?
 
