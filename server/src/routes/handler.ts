@@ -13,7 +13,7 @@ export const saveArticle = async (req: Request, res: Response) => {
   }
 
   try {
-    const alreadyExist = await ArticlesModel.findOne({ link: article.url })
+    const alreadyExist = await ArticlesModel.findOne({ url: article.url })
 
     if (alreadyExist) {
       return res.status(400).send({ success: false, message: "Article already exists" })
@@ -29,14 +29,14 @@ export const saveArticle = async (req: Request, res: Response) => {
 }
 
 export const retrieveArticle = async (req: Request, res: Response) => {
-  const articleName: string = req.query.name as string
+  const name: string | undefined = req.query.name?.toString()
 
-  if (!articleName) {
+  if (!name) {
     return res.status(400).send({ success: false, message: "Please provide the article's name" })
   }
 
   try {
-    const aggregationPipeline = createAggregationPipeline(articleName, "name")
+    const aggregationPipeline = createAggregationPipeline(name, "name")
 
     const cursor = db.collection("articles").aggregate(aggregationPipeline)
 
@@ -54,20 +54,20 @@ export const retrieveArticle = async (req: Request, res: Response) => {
 }
 
 export const deleteArticle = async (req: Request, res: Response) => {
-  const article: DeleteArticle = req.body
+  const url: DeleteArticle = req.body
 
-  if (!article.url) {
-    return res.status(400).send({ success: false, message: "Please provide the article's name" })
+  if (!url) {
+    return res.status(400).send({ success: false, message: "Please provide the article's url" })
   }
 
   try {
-    const result = await ArticlesModel.findOne({ url: article.url })
+    const result = await ArticlesModel.findOne({ url: url.url })
 
     if (result === null) {
       return res.status(404).send({ success: false, message: "Article not found" })
     }
 
-    const deletedArticle = await ArticlesModel.deleteOne({ url: article.url })
+    const deletedArticle = await ArticlesModel.deleteOne({ url: url.url })
 
     return res.status(200).send({ success: true, data: "Article deleted" })
   } catch (err: any) {

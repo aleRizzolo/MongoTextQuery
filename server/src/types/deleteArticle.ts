@@ -1,3 +1,3 @@
 export interface DeleteArticle {
-  url: String
+  url: string
 }
