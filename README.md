@@ -62,28 +62,7 @@ Before you can run this project, make sure you have the following prerequisites 
    npm run build
    ```
 
-6. Start the application:
-
-_ToDo: start the front-end_
-
 The Full Text Search Engine should now be up and running on `http://localhost:3000` (or 8080 if PORT variable is not defined).
-
-## Run from script (requires Docker)
-
-1. Run server Docker build<br>
-
-   ```bash
-   cd server
-   ```
-
-   and
-
-   ```bash
-   ./build_docker.[bat][sh]
-   ```
-
-2. Run front-end Docker build<br>
-   _ToDo_
 
 ## Project Structure
 
@@ -101,9 +80,3 @@ The project has the following structure:
 ## Contributing
 
 If you would like to contribute to this project, please open an issue or create a pull request on the GitHub repository.
-
-## Next Steps
-
-- [ ] Add a front-end
-- [ ] Fix startup scripts
-- [ ] Actions for building Docker
